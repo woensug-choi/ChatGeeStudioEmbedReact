@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { BubbleProps } from 'flowise-embed'
+import type { BubbleProps } from 'chatgee-studio-embed'
 
 type Props = BubbleProps
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      'flowise-chatbot': React.DetailedHTMLProps<
+      'chatgee-studio-chatbot': React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
         HTMLElement
       >
@@ -22,7 +22,7 @@ export const BubbleChat = (props: Props) => {
 
   useEffect(() => {
     ;(async () => {
-      await import('flowise-embed/dist/web')
+      await import('chatgee-studio-embed/dist/web')
       setIsInitialized(true)
     })()
     return () => {
@@ -32,7 +32,7 @@ export const BubbleChat = (props: Props) => {
 
   const attachBubbleToDom = useCallback((props: Props) => {
     const bubbleElement = document.createElement(
-      'flowise-chatbot'
+      'chatgee-studio-chatbot'
     ) as BubbleElement
     ref.current = bubbleElement
     injectPropsToElement(ref.current, props)
